@@ -8,17 +8,17 @@ import './style/App.css';
 function App() {
   return (
     <>
-      <Box className="container">
+      <Box className="appContainer">
       <Header />
       <Box className="gridContainer">
-        <Grid container spacing={2} className="paper" direction="row" sx={{ height: 'calc(100vh - 82.39px)' }}>
+        <Grid container spacing={2} className="gridBox" direction="row" sx={{ height: 'calc(100vh - 82.39px)' }}>
           <Grid item xs={6}>
-            <Paper sx={{ height: 'calc(100vh - 97.39px)' }}>
+            <Paper sx={{ height: 'calc(100vh - 97.39px)'}} className="paper">
               <Todolist/>
             </Paper>
           </Grid>
           <Grid item xs={6}>
-            <Paper sx={{ height: 'calc(100vh - 97.39px)' }}>prova</Paper>
+            <Paper sx={{ height: 'calc(100vh - 97.39px)' }} className="paper">prova</Paper>
           </Grid>
         </Grid>
       </Box>
