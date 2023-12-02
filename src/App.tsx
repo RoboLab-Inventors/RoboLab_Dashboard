@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Inventory from "./components/Inventory";
 import "./style/App.css";
 
 function App() {
@@ -19,13 +20,20 @@ function App() {
             sx={{ height: "calc(100vh - 82.39px)" }}
           >
             <Grid item xs={6}>
-              <Paper sx={{ height: "calc(100vh - 97.39px)" }} className="scrollPadding">
-                <div className="paper"><Todolist /></div>
+              <Paper
+                sx={{ height: "calc(100vh - 97.39px)" }}
+                className="scrollPadding"
+              >
+                <div className="paper">
+                  <Todolist />
+                </div>
               </Paper>
             </Grid>
             <Grid item xs={6}>
-              <Paper sx={{ height: "calc(100vh - 97.39px)" }} className="paper">
-                prova
+              <Paper sx={{ height: "calc(100vh - 97.39px)" }}>
+                <div className="paper">
+                  <Inventory />
+                </div>
               </Paper>
             </Grid>
           </Grid>

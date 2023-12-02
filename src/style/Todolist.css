@@ -30,4 +30,12 @@
   .listButtons {
     margin-left: 10px;
   }
-  
+
+  .dialogContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dialogContent{
+    padding-top: 20px !important;
+  }

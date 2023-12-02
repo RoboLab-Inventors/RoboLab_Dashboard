@@ -9,8 +9,10 @@
 .gridBox {
   padding-top: 7.5px;
 }
+
 .paper {
   overflow-y: auto;
+  overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: #ffca18 #272727;
   height: 100%;
