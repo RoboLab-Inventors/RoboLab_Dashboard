@@ -39,3 +39,8 @@
   .dialogContent{
     padding-top: 20px !important;
   }
+
+  .list .text {
+    word-wrap: break-word; /* For older browsers */
+    overflow-wrap: break-word; /* For newer browsers */
+  }

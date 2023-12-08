@@ -1,0 +1,5 @@
+.cell {
+  word-wrap: break-word; /* For older browsers */
+  overflow-wrap: break-word; /* For newer browsers */
+  overflow: hidden;
+}

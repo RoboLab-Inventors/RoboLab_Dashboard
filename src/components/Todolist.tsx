@@ -117,6 +117,15 @@ const Todolist: React.FC = () => {
     setTempVal(val);
   };
 
+  const handleCancelButton= () =>{
+    if (isEdited){
+      setTodos([...todos, { val: tempVal, isDone: false, id: tempId }]);
+      setInputVal("");
+      setIsEdited(false);
+      setOpenDialog(false);
+    }else
+      setOpenDialog(false);
+  }
   return (
     <Container
       component="main"
@@ -156,7 +165,7 @@ const Todolist: React.FC = () => {
         </DialogContent>
         </div>
         <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} color="primary">
+          <Button onClick={handleCancelButton} color="primary">
             Cancel
           </Button>
           <Button onClick={handlePassword} color="primary">

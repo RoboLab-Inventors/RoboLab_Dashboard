@@ -12,7 +12,7 @@
 
 .paper {
   overflow-y: auto;
-  overflow-x: auto;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #ffca18 #272727;
   height: 100%;
