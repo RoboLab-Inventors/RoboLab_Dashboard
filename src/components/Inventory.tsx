@@ -31,11 +31,11 @@ function Inventory() {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell align="right">Oggetto</TableCell>
-              <TableCell align="right">Quantità</TableCell>
-              <TableCell align="right">Armadio n° </TableCell>
-              <TableCell align="right">Note</TableCell>
+              <TableCell style={{ fontSize: '0.7rem' }}>ID</TableCell>
+              <TableCell align="right" style={{ fontSize: '0.7rem' }}>Oggetto</TableCell>
+              <TableCell align="right" style={{ fontSize: '0.7rem' }}>Quantità</TableCell>
+              <TableCell align="right" style={{ fontSize: '0.7rem' }}>Armadio n° </TableCell>
+              <TableCell align="right" style={{ fontSize: '0.7rem' }}>Note</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,13 +44,13 @@ function Inventory() {
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell className="cell" component="th" scope="row">
+                <TableCell className="cell" component="th" scope="row" style={{ fontSize: '0.7rem' }}>
                   {row.id}
                 </TableCell>
-                <TableCell className="cell" align="right">{row.oggetto}</TableCell>
-                <TableCell className="cell" align="right">{row.quantita}</TableCell>
-                <TableCell className="cell" align="right">{row.nArmadio}</TableCell>
-                <TableCell className="cell" align="right">{row.note}</TableCell>
+                <TableCell className="cell" align="right" style={{ fontSize: '0.7rem' }}>{row.oggetto}</TableCell>
+                <TableCell className="cell" align="right" style={{ fontSize: '0.7rem' }}>{row.quantita}</TableCell>
+                <TableCell className="cell" align="right" style={{ fontSize: '0.7rem' }}>{row.nArmadio}</TableCell>
+                <TableCell className="cell" align="right" style={{ fontSize: '0.7rem' }}>{row.note}</TableCell>
               </TableRow>
             ))}
           </TableBody>
