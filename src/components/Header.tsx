@@ -1,9 +1,12 @@
 import logo from "../images/logoscrittanobg.png";
 import Box from "@mui/material/Box";
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import '../style/Header.css'
 
 function Header() {
+  const openNewTab = () => {
+    window.open('https://www.uniba.it/it/ricerca/dipartimenti/informatica/laboratori-didattici-1/laboratorio-didattico-di-robotica/laboratorio-didattico-di-robotica', '_blank');
+  };
   return (
     <>
       <Box
@@ -17,9 +20,9 @@ function Header() {
             <img className="logo" src={logo} alt="ROBOLAB" />
           </Box>
         <Box className='headerChildBox' sx={{width: 219}}>
-            <Typography>
+            <Button onClick={openNewTab}>
                 Informazioni
-            </Typography>
+            </Button>
         </Box>
       </Box>
     </>

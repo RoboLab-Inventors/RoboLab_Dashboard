@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Box from '@mui/material/Box';
 import "../style/Todolist.css";
 import {
   TextField,
@@ -8,7 +9,14 @@ import {
   List,
   ListItem,
   Container,
-} from '@mui/material';
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  FormControl,
+  InputLabel,
+  Input,
+} from "@mui/material";
 
 interface Todo {
   val: string;
@@ -20,28 +28,70 @@ const Todolist: React.FC = () => {
   const [inputVal, setInputVal] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isEdited, setIsEdited] = useState<boolean>(false);
+  const [isDeleted, setIsDeleted] = useState<boolean>(false);
   const [editedId, setEditedId] = useState<number | null>(null);
+  const [tempId, setTempId] = useState<number>(0);
+  const [tempVal, setTempVal] = useState<string>("");
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(e.target.value);
   };
 
+  const handlePassword = () => {
+    if (isDeleted == true) {
+      if (password == "prova") {
+        const newTodos = todos.filter((todo) => todo.id !== tempId);
+        setTodos(newTodos);
+        setOpenDialog(false);
+      } else {
+        alert("Password errata");
+        setOpenDialog(false);
+      }
+      setIsDeleted(false);
+    } else if (isEdited == true) {
+      if (password == "prova") {
+        setOpenDialog(false);
+      } else {
+        alert("Password errata");
+        setOpenDialog(false);
+        setTodos([...todos, { val: tempVal, isDone: false, id: tempId }]);
+        setInputVal("");
+        setIsEdited(false);
+      }
+    } else {
+      if (password == "prova") {
+        setOpenDialog(false);
+        setTodos([
+          ...todos,
+          { val: inputVal, isDone: false, id: new Date().getTime() },
+        ]);
+        setInputVal("");
+      } else {
+        alert("Password errata");
+        setOpenDialog(false);
+      }
+    }
+    setPassword("");
+    setTempId(0);
+    setTempVal("");
+  };
+
   const handleClick = () => {
     if (!isEdited) {
-      setTodos([
-        ...todos,
-        { val: inputVal, isDone: false, id: new Date().getTime() }
-      ]);
+      setOpenDialog(true);
     } else {
       setTodos([...todos, { val: inputVal, isDone: false, id: editedId! }]);
+      setInputVal("");
+      setIsEdited(false);
     }
-    setInputVal("");
-    setIsEdited(false);
   };
 
   const onDelete = (id: number) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
+    setOpenDialog(true);
+    setIsDeleted(true);
+    setTempId(id);
   };
 
   const handleDone = (id: number) => {
@@ -54,7 +104,7 @@ const Todolist: React.FC = () => {
     setTodos(updated);
   };
 
-  const handleEdit = (id: number) => {
+  const handleEdit = (id: number, val: string) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     const editVal = todos.find((todo) => todo.id === id);
     if (editVal) {
@@ -63,10 +113,26 @@ const Todolist: React.FC = () => {
       setTodos(newTodos);
       setIsEdited(true);
     }
+    setOpenDialog(true);
+    setTempId(id);
+    setTempVal(val);
   };
 
+  const handleCancelButton= () =>{
+    if (isEdited){
+      setTodos([...todos, { val: tempVal, isDone: false, id: tempId }]);
+      setInputVal("");
+      setIsEdited(false);
+      setOpenDialog(false);
+    }else
+      setOpenDialog(false);
+  }
   return (
-    <Container component="main" className="container" sx={{ maxHeight: 'calc(100vh - 300px)' }}>
+    <Container
+      component="main"
+      className="container"
+      sx={{ maxHeight: "calc(100vh - 300px)" }}
+    >
       <TextField
         variant="outlined"
         onChange={onChange}
@@ -84,6 +150,31 @@ const Todolist: React.FC = () => {
       >
         {isEdited ? "Edit Task" : "Add Task"}
       </Button>
+      <Dialog  open={openDialog} onClose={() => setOpenDialog(false)} fullWidth maxWidth="xs">
+        <div className="dialogContainer">
+        <DialogTitle>Inserire Password</DialogTitle>
+        <DialogContent className="dialogContent">
+        <FormControl>
+            <InputLabel htmlFor="password-input">Password</InputLabel>
+            <Input
+              id="password-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+        </DialogContent>
+        </div>
+        <DialogActions>
+          <Button onClick={handleCancelButton} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handlePassword} color="primary">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+      
       <List>
         {todos.map((todo) => (
           <ListItem divider key={todo.id} className="list">
@@ -97,8 +188,9 @@ const Todolist: React.FC = () => {
             >
               {todo.val}
             </Typography>
+            <Box className="buttonBox">
             <Button
-              onClick={() => handleEdit(todo.id)}
+              onClick={() => handleEdit(todo.id, todo.val)}
               variant="contained"
               className="listButtons"
             >
@@ -112,6 +204,7 @@ const Todolist: React.FC = () => {
             >
               Delete
             </Button>
+            </Box>
           </ListItem>
         ))}
       </List>

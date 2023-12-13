@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Todolist from "./components/Todolist";
+import Header from "./components/Header";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Inventory from "./components/Inventory";
+import "./style/App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Box className="appContainer">
+        <Header />
+        <Box className="gridContainer">
+          <Grid
+            container
+            spacing={2}
+            className="gridBox"
+            direction="row"
+            sx={{ height: "calc(100vh - 82.39px)" }}
+          >
+            <Grid item xs={6}>
+              <Paper
+                sx={{ height: "calc(100vh - 97.39px)" }}
+                className="scrollPadding"
+              >
+                <div className="paper">
+                  <Todolist />
+                </div>
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper sx={{ height: "calc(100vh - 97.39px)" }}>
+                <div className="paper">
+                  <Inventory />
+                </div>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
