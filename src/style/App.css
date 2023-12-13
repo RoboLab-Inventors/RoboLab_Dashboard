@@ -1,11 +1,43 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.gridContainer{
-    flex: 1;
+.gridContainer {
+  flex: 1;
 }
-.paper{
-    padding-top: 7.5px;
+.gridBox {
+  padding-top: 7.5px;
+}
+
+.paper {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #ffca18 #272727;
+  height: 100%;
+}
+
+.paper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.paper::-webkit-scrollbar-track {
+  background-color: #272727;
+}
+
+.paper::-webkit-scrollbar-thumb {
+  background-color: #ffca18;
+  border-radius: 4px;
+  border: 2px solid transparent;
+}
+
+.paper::-webkit-scrollbar-thumb:hover {
+  background-color: #b58900;
+}
+
+.scrollPadding{
+    padding-right: 25px;
+    padding-bottom: 4px;
+    padding-top: 4px;
 }
