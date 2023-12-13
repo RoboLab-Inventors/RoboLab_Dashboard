@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Box from '@mui/material/Box';
 import "../style/Todolist.css";
 import {
   TextField,
@@ -187,6 +188,7 @@ const Todolist: React.FC = () => {
             >
               {todo.val}
             </Typography>
+            <Box className="buttonBox">
             <Button
               onClick={() => handleEdit(todo.id, todo.val)}
               variant="contained"
@@ -202,6 +204,7 @@ const Todolist: React.FC = () => {
             >
               Delete
             </Button>
+            </Box>
           </ListItem>
         ))}
       </List>
