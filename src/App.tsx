@@ -6,10 +6,7 @@ import Box from "@mui/material/Box";
 import Inventory from "./components/Inventory";
 import "./style/App.css";
 
-
 function App() {
-
-
   return (
     <>
       <Box className="appContainer">
@@ -43,7 +40,7 @@ function App() {
         </Box>
       </Box>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
